@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Love ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ff758c, #ff7eb3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(0,0,0,0.3);
+      padding: 30px;
+      border-radius: 20px;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px);} 
+      to { opacity: 1; transform: translateY(0);} 
+    }
+
+    h1 {
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px white; }
+      to { text-shadow: 0 0 30px yellow; }
+    }
+
+    .name {
+      font-size: 28px;
+      margin-bottom: 10px;
+      animation: heartbeat 1s infinite;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      background: white;
+      color: #ff4d6d;
+    }
+
+    #message {
+      margin-top: 20px;
+      display: none;
+      font-size: 20px;
+    }
+
+    .typing {
+      border-right: 2px solid white;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    .gallery {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, 120px);
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .gallery img {
+      width: 120px;
+      height: 120px;
+      border-radius: 15px;
+      transition: 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.2);
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh); opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    #countdown {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .bigWish {
+      font-size: 32px;
+      animation: pop 1s ease infinite alternate;
+    }
+
+    @keyframes pop {
+      from { transform: scale(1); }
+      to { transform: scale(1.2); }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+  <div id="countdown"></div>
+
+  <!-- CHANGE NAME HERE -->
+  <div class="name">Happy Birthday ❤️ Baby ❤️</div>
+
+  <h1 id="mainHeading">Tap Below ❤️</h1>
+  <button onclick="showMessage()">Tap for Surprise 🎁</button>
+
+  <div id="message">
+    <p class="typing">Happy Birthday Meri jaan ❤️😘</p>
+    <p class="typing">Aap sabse special ho mere liye 🥹❤️</p>
+
+    <div class="gallery">
+      <img src="C:\Users\India\Downloads\pic1.jpeg">
+      <img src="C:\Users\India\Downloads\pic2.jpeg">
+      <img src="C:\Users\India\Downloads\pic3.jpeg">
+      <img src="C:\Users\India\Downloads\pic4.jpeg">
+    </div>
+  </div>
+</div>
+
+<script>
+  function showMessage() {
+    document.getElementById("message").style.display = "block";
+    document.getElementById("music").play();
+  }
+
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+  }
+  setInterval(createHeart, 300);
+
+  const birthday = new Date("April 8, 2026 00:00:00").getTime();
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const distance = birthday - now;
+
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    if (distance > 0) {
+      document.getElementById("countdown").innerHTML =
+        "Countdown: " + hours + "h " + minutes + "m " + seconds + "s";
+    } else {
+      document.getElementById("countdown").innerHTML = "🎉 IT'S HER DAY ❤️ 🎂";
+
+      document.getElementById("mainHeading").innerHTML =
+        "💖 HAPPY BIRTHDAY MY LOVE 💖";
+
+      document.getElementById("mainHeading").classList.add("bigWish");
+
+      document.getElementById("music").play();
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
